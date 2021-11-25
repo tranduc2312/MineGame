@@ -12,7 +12,7 @@ var mines = {
     matrixSt: [],
     square: 40,
     padSquare: 10,
-    bomNums: 30,
+    bomNums: 40,
     bomImg: null,
     flagImg: null,
     init: function () {
@@ -47,36 +47,115 @@ var mines = {
     },
     clickEvent: function (e) {
         var pos = mines.caculateZone(e);
-        var data = mines.matrix[pos.zoneX][pos.zoneY];
-        //console.table(mines.matrixSt);
-        if (mines.matrixSt[pos.zoneX][pos.zoneY] == 0) {
-            if (data != 'x') {
-                mines.matrixSt[pos.zoneX][pos.zoneY] = 1;
-                mines.compute(pos.zoneX, pos.zoneY, null, data);
-                if (mines.isWin(mines.matrix, mines.matrixSt)) {
-                    alert("Success!")
-                }
-            }
-            else {
-                mines.matrixSt[pos.zoneX][pos.zoneY] = 1;
-                mines.compute(pos.zoneX, pos.zoneY, bomImg, null);
-                alert("End Game!");
-            }
-        }
+        mines.handleLeftClick(pos);
     },
     rightClickEvent: function (e) {
         var pos = mines.caculateZone(e);
-        if (mines.matrixSt[pos.zoneX][pos.zoneY] == 0) {
-            mines.matrixSt[pos.zoneX][pos.zoneY] = 2;
-            mines.compute(pos.zoneX, pos.zoneY, flagImg, null);
+        if (mines.matrixSt[pos.i][pos.j] == 0) {
+            mines.matrixSt[pos.i][pos.j] = 2;
+            mines.compute(pos.i, pos.j, flagImg, null);
         }
-        else if (mines.matrixSt[pos.zoneX][pos.zoneY] == 2) {
-            mines.matrixSt[pos.zoneX][pos.zoneY] = 0;
+        else if (mines.matrixSt[pos.i][pos.j] == 2) {
+            mines.matrixSt[pos.i][pos.j] = 0;
             var bombSquare = mines.square - mines.padSquare;
-            mines.ctx.clearRect(pos.zoneX * mines.square + 2, pos.zoneY * mines.square + 2,
+            mines.ctx.clearRect(pos.i * mines.square + 2, pos.j * mines.square + 2,
                 bombSquare + 5, bombSquare + 5);
         }
 
+    },
+    handleLeftClick: function (pos) {
+        var data = mines.matrix[pos.i][pos.j];
+        if (mines.matrixSt[pos.i][pos.j] == 0) {
+            if (data != 'x') {
+                if (data != 0) {
+                    mines.matrixSt[pos.i][pos.j] = 1;
+                    mines.compute(pos.i, pos.j, null, data);
+                    if (mines.isWin(mines.matrix, mines.matrixSt)) {
+                        alert("Success!")
+                    }
+                } else {
+                    mines.matrixSt[pos.i][pos.j] = 1;
+                    mines.compute(pos.i, pos.j, null, data);
+                    mines.findZeroNear(pos.i, pos.j);
+                }
+            }
+            else {
+                mines.matrixSt[pos.i][pos.j] = 1;
+                mines.compute(pos.i, pos.j, bomImg, null);
+                alert("End Game!");
+            }
+        }
+        else if (mines.matrixSt[pos.i][pos.j] == 1) {
+            var count = 0;
+            var i = pos.i, j = pos.j;
+            var status = 2
+            // for (var u = -1; u <= 1; u++)
+            //     for (var v = -1; v <= 1; v++)
+            //         if (u != 0 && v != 0)
+            //             if (i >= -1 * u && i < mines.boardwidth + -1 * u && j >= -1 * v && j < mines.boardheight + -1 * v
+            //                 && mines.matrixSt[i + u][j + v] == status) {
+            //                 count++;
+            //             }
+            // console.log(count);
+            if (i < mines.boardwidth - 1 && mines.matrixSt[i + 1][j] == status) {
+                count++;
+            }
+            if (i > 0 && mines.matrixSt[i - 1][j] == status) {
+                count++;
+            }
+            if (j < mines.boardheight - 1 && mines.matrixSt[i][j + 1] == status) {
+                count++;
+            }
+            if (j > 0 && mines.matrixSt[i][j - 1] == status) {
+                count++;
+            }
+            if (i < mines.boardwidth - 1 && j < mines.boardheight - 1 && mines.matrixSt[i + 1][j + 1] == status) {
+                count++;
+            }
+            if (i > 0 && j > 0 && mines.matrixSt[i - 1][j - 1] == status) {
+                count++;
+            }
+            if (i < mines.boardwidth - 1 && j > 0 && mines.matrixSt[i + 1][j - 1] == status) {
+                count++;
+            }
+            if (i > 0 && j < mines.boardheight - 1 && mines.matrixSt[i - 1][j + 1] == status) {
+                count++;
+            }
+            if (mines.matrix[i][j] == count) {
+                status = 0;
+                // for (var u = -1; u <= 1; u++)
+                //     for (var v = -1; v <= 1; v++)
+                //         if (u != 0 && v != 0)
+                //             if (i >= -1 * u && i < mines.boardwidth + -1 * u && j >= -1 * v && j < mines.boardheight + -1 * v
+                //                 && mines.matrixSt[i + u][j + v] == status) {
+                //                 mines.handleLeftClick(new mines.Pos(i + u, j + v));
+                //             }
+                if (i < mines.boardwidth - 1 && mines.matrixSt[i + 1][j] == status) {
+                    mines.handleLeftClick(new mines.Pos(i + 1, j));
+                }
+                if (i > 0 && mines.matrixSt[i - 1][j] == status) {
+                    mines.handleLeftClick(new mines.Pos(i - 1, j));
+                }
+                if (j < mines.boardheight - 1 && mines.matrixSt[i][j + 1] == status) {
+                    mines.handleLeftClick(new mines.Pos(i, j + 1));
+                }
+                if (j > 0 && mines.matrixSt[i][j - 1] == status) {
+                    mines.handleLeftClick(new mines.Pos(i, j - 1));
+                }
+                if (i < mines.boardwidth - 1 && j < mines.boardheight - 1 && mines.matrixSt[i + 1][j + 1] == status) {
+                    mines.handleLeftClick(new mines.Pos(i + 1, j + 1));
+                }
+                if (i > 0 && j > 0 && mines.matrixSt[i - 1][j - 1] == status) {
+                    mines.handleLeftClick(new mines.Pos(i - 1, j - 1));
+                }
+                if (i < mines.boardwidth - 1 && j > 0 && mines.matrixSt[i + 1][j - 1] == status) {
+                    mines.handleLeftClick(new mines.Pos(i + 1, j - 1));
+                }
+                if (i > 0 && j < mines.boardheight - 1 && mines.matrixSt[i - 1][j + 1] == status) {
+                    mines.handleLeftClick(new mines.Pos(i - 1, j + 1));
+                }
+            }
+        }
     },
     compute: function (x, y, image, text) {
         var padding = mines.padSquare / 2;
@@ -97,12 +176,12 @@ var mines = {
     caculateZone: function (e) {
         var zonex = Math.floor((e.clientX - e.target.offsetLeft) / mines.square);
         var zoney = Math.floor((e.clientY - e.target.offsetTop) / mines.square);
-        return { 'zoneX': zonex, 'zoneY': zoney };
+        return new mines.Pos(zonex, zoney); //{ 'zoneX': zonex, 'zoneY': zoney };
     },
     randomMine: function () {
         mines.matrix = new Array(mines.boardwidth).fill().map(entry => Array(mines.boardheight));
         mines.matrixSt = new Array(mines.boardwidth).fill().map(entry => Array(mines.boardheight));
-
+        var bomX = 'x';
         var listRandom = new Set();
         do {
             listRandom.add(parseInt(Math.random() * mines.boardwidth * mines.boardheight))
@@ -117,37 +196,37 @@ var mines = {
         listRandom.forEach(v => {
             var bom = mines.getIndexBomMap(v);
             console.log(bom);
-            mines.matrix[bom.row][bom.col] = 'x';
+            mines.matrix[bom.row][bom.col] = bomX;
         })
         for (var i = 0; i < mines.boardwidth; i++) {
             for (var j = 0; j < mines.boardheight; j++) {
-                if (mines.matrix[i][j] == 'x') {
+                if (mines.matrix[i][j] == bomX) {
                     //mines.compute(i, j, bomImg, null);
                 }
                 else {
                     var count = 0;
-                    if (i < mines.boardwidth - 1 && mines.matrix[i + 1][j] == 'x') {
+                    if (i < mines.boardwidth - 1 && mines.matrix[i + 1][j] == bomX) {
                         count++;
                     }
-                    if (i > 0 && mines.matrix[i - 1][j] == 'x') {
+                    if (i > 0 && mines.matrix[i - 1][j] == bomX) {
                         count++;
                     }
-                    if (j < mines.boardheight - 1 && mines.matrix[i][j + 1] == 'x') {
+                    if (j < mines.boardheight - 1 && mines.matrix[i][j + 1] == bomX) {
                         count++;
                     }
-                    if (j > 0 && mines.matrix[i][j - 1] == 'x') {
+                    if (j > 0 && mines.matrix[i][j - 1] == bomX) {
                         count++;
                     }
-                    if (i < mines.boardwidth - 1 && j < mines.boardheight - 1 && mines.matrix[i + 1][j + 1] == 'x') {
+                    if (i < mines.boardwidth - 1 && j < mines.boardheight - 1 && mines.matrix[i + 1][j + 1] == bomX) {
                         count++;
                     }
-                    if (i > 0 && j > 0 && mines.matrix[i - 1][j - 1] == 'x') {
+                    if (i > 0 && j > 0 && mines.matrix[i - 1][j - 1] == bomX) {
                         count++;
                     }
-                    if (i < mines.boardwidth - 1 && j > 0 && mines.matrix[i + 1][j - 1] == 'x') {
+                    if (i < mines.boardwidth - 1 && j > 0 && mines.matrix[i + 1][j - 1] == bomX) {
                         count++;
                     }
-                    if (i > 0 && j < mines.boardheight - 1 && mines.matrix[i - 1][j + 1] == 'x') {
+                    if (i > 0 && j < mines.boardheight - 1 && mines.matrix[i - 1][j + 1] == bomX) {
                         count++;
                     }
                     mines.matrix[i][j] = count;
@@ -173,5 +252,78 @@ var mines = {
             }
         }
         return true;
+    },
+    findZeroNear: function (zoneX, zoneY) {
+        var pos = new mines.Pos(zoneX, zoneY);
+        // Thuat toan to mau loang
+        var list = [];
+        list.push(pos);
+        console.log(list.length);
+        while (list.length > 0) {
+            // debugger;
+            pos = list.shift();
+            if (pos.i < mines.boardwidth - 1 && mines.matrixSt[pos.i + 1][pos.j] == 0) {
+                mines.matrixSt[pos.i + 1][pos.j] = 1;
+                var data = mines.matrix[pos.i + 1][pos.j];
+                mines.compute(pos.i + 1, pos.j, null, data);
+                if (mines.matrix[pos.i + 1][pos.j] == '0')
+                    list.push(new mines.Pos(pos.i + 1, pos.j));
+            }
+            if (pos.i > 0 && mines.matrixSt[pos.i - 1][pos.j] == 0) {
+                mines.matrixSt[pos.i - 1][pos.j] = 1;
+                var data = mines.matrix[pos.i - 1][pos.j];
+                mines.compute(pos.i - 1, pos.j, null, data);
+                if (mines.matrix[pos.i - 1][pos.j] == '0')
+                    list.push(new mines.Pos(pos.i - 1, pos.j));
+            }
+            if (pos.j < mines.boardheight - 1 && mines.matrixSt[pos.i][pos.j + 1] == 0) {
+                mines.matrixSt[pos.i][pos.j + 1] = 1;
+                var data = mines.matrix[pos.i][pos.j + 1];
+                mines.compute(pos.i, pos.j + 1, null, data);
+                if (mines.matrix[pos.i][pos.j + 1] == '0')
+                    list.push(new mines.Pos(pos.i, pos.j + 1));
+            }
+            if (pos.j > 0 && mines.matrixSt[pos.i][pos.j - 1] == 0) {
+                mines.matrixSt[pos.i][pos.j - 1] = 1;
+                var data = mines.matrix[pos.i][pos.j - 1];
+                mines.compute(pos.i, pos.j - 1, null, data);
+                if (mines.matrix[pos.i][pos.j - 1] == '0')
+                    list.push(new mines.Pos(pos.i, pos.j - 1));
+            }
+            if (pos.i < mines.boardwidth - 1 && pos.j < mines.boardheight - 1
+                && mines.matrixSt[pos.i + 1][pos.j + 1] == 0) {
+                mines.matrixSt[pos.i + 1][pos.j + 1] = 1;
+                var data = mines.matrix[pos.i + 1][pos.j + 1];
+                mines.compute(pos.i + 1, pos.j + 1, null, data);
+                if (mines.matrix[pos.i + 1][pos.j + 1] == '0')
+                    list.push(new mines.Pos(pos.i + 1, pos.j + 1));
+            }
+            if (pos.i > 0 && pos.j > 0 && mines.matrixSt[pos.i - 1][pos.j - 1] == 0) {
+                mines.matrixSt[pos.i - 1][pos.j - 1] = 1;
+                var data = mines.matrix[pos.i - 1][pos.j - 1];
+                mines.compute(pos.i - 1, pos.j - 1, null, data);
+                if (mines.matrix[pos.i - 1][pos.j - 1] == '0')
+                    list.push(new mines.Pos(pos.i - 1, pos.j - 1));
+            }
+            if (pos.i < mines.boardwidth - 1 && pos.j > 0 && mines.matrixSt[pos.i + 1][pos.j - 1] == 0) {
+                mines.matrixSt[pos.i + 1][pos.j - 1] = 1;
+                var data = mines.matrix[pos.i + 1][pos.j - 1];
+                mines.compute(pos.i + 1, pos.j - 1, null, data);
+                if (mines.matrix[pos.i + 1][pos.j - 1] == '0')
+                    list.push(new mines.Pos(pos.i + 1, pos.j - 1));
+            }
+            if (pos.i > 0 && pos.j < mines.boardheight - 1 && mines.matrixSt[pos.i - 1][pos.j + 1] == 0) {
+                mines.matrixSt[pos.i - 1][pos.j + 1] = 1;
+                var data = mines.matrix[pos.i - 1][pos.j + 1];
+                mines.compute(pos.i - 1, pos.j + 1, null, data);
+                if (mines.matrix[pos.i - 1][pos.j + 1] == '0')
+                    list.push(new mines.Pos(pos.i - 1, pos.j + 1));
+            }
+            console.log(list);
+        }
+    },
+    Pos: function (i, j) {
+        this.i = i;
+        this.j = j;
     }
 }
