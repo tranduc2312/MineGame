@@ -1,0 +1,276 @@
+
+Windows IP Configuration
+
+    scinstallcheck.mcafee.com
+    ----------------------------------------
+    No records of type AAAA
+
+
+    scinstallcheck.mcafee.com
+    ----------------------------------------
+    Record Name . . . . . : scinstallcheck.mcafee.com
+    Record Type . . . . . : 1
+    Time To Live  . . . . : 598580
+    Data Length . . . . . : 4
+    Section . . . . . . . : Answer
+    A (Host) Record . . . : 0.0.0.1
+
+
+    ta88.com
+    ----------------------------------------
+    No records of type AAAA
+
+
+    ta88.com
+    ----------------------------------------
+    Record Name . . . . . : ta88.com
+    Record Type . . . . . : 1
+    Time To Live  . . . . : 598580
+    Data Length . . . . . : 4
+    Section . . . . . . . : Answer
+    A (Host) Record . . . : 127.0.0.1
+
+
+    1.0.0.127.in-addr.arpa
+    ----------------------------------------
+    Record Name . . . . . : 1.0.0.127.in-addr.arpa.
+    Record Type . . . . . : 12
+    Time To Live  . . . . : 598580
+    Data Length . . . . . : 8
+    Section . . . . . . . : Answer
+    PTR Record  . . . . . : www-weighted.jetbrains.com
+
+
+    Record Name . . . . . : 1.0.0.127.in-addr.arpa.
+    Record Type . . . . . : 12
+    Time To Live  . . . . : 598580
+    Data Length . . . . . : 8
+    Section . . . . . . . : Answer
+    PTR Record  . . . . . : ta88.com
+
+
+    Record Name . . . . . : 1.0.0.127.in-addr.arpa.
+    Record Type . . . . . : 12
+    Time To Live  . . . . : 598580
+    Data Length . . . . . : 8
+    Section . . . . . . . : Answer
+    PTR Record  . . . . . : sin88.club
+
+
+    lap0043-11.mshome.net
+    ----------------------------------------
+    No records of type AAAA
+
+
+    lap0043-11.mshome.net
+    ----------------------------------------
+    Record Name . . . . . : LAP0043-11.mshome.net
+    Record Type . . . . . : 1
+    Time To Live  . . . . : 598580
+    Data Length . . . . . : 4
+    Section . . . . . . . : Answer
+    A (Host) Record . . . : 192.168.137.185
+
+
+    www-weighted.jetbrains.com
+    ----------------------------------------
+    No records of type AAAA
+
+
+    www-weighted.jetbrains.com
+    ----------------------------------------
+    Record Name . . . . . : www-weighted.jetbrains.com
+    Record Type . . . . . : 1
+    Time To Live  . . . . : 598580
+    Data Length . . . . . : 4
+    Section . . . . . . . : Answer
+    A (Host) Record . . . : 127.0.0.1
+
+
+    sin88.club
+    ----------------------------------------
+    No records of type AAAA
+
+
+    sin88.club
+    ----------------------------------------
+    Record Name . . . . . : sin88.club
+    Record Type . . . . . : 1
+    Time To Live  . . . . : 598580
+    Data Length . . . . . : 4
+    Section . . . . . . . : Answer
+    A (Host) Record . . . : 127.0.0.1
+
+
+    mssplus.mcafee.com
+    ----------------------------------------
+    No records of type AAAA
+
+
+    mssplus.mcafee.com
+    ----------------------------------------
+    Record Name . . . . . : mssplus.mcafee.com
+    Record Type . . . . . : 1
+    Time To Live  . . . . : 598580
+    Data Length . . . . . : 4
+    Section . . . . . . . : Answer
+    A (Host) Record . . . : 0.0.0.1
+
+
+    185.137.168.192.in-addr.arpa
+    ----------------------------------------
+    Record Name . . . . . : 185.137.168.192.in-addr.arpa.
+    Record Type . . . . . : 12
+    Time To Live  . . . . : 598580
+    Data Length . . . . . : 8
+    Section . . . . . . . : Answer
+    PTR Record  . . . . . : LAP0043-11.mshome.net
+
+
+    1.0.0.0.in-addr.arpa
+    ----------------------------------------
+    Record Name . . . . . : 1.0.0.0.in-addr.arpa.
+    Record Type . . . . . : 12
+    Time To Live  . . . . : 598580
+    Data Length . . . . . : 8
+    Section . . . . . . . : Answer
+    PTR Record  . . . . . : scinstallcheck.mcafee.com
+
+
+    Record Name . . . . . : 1.0.0.0.in-addr.arpa.
+    Record Type . . . . . : 12
+    Time To Live  . . . . : 598580
+    Data Length . . . . . : 8
+    Section . . . . . . . : Answer
+    PTR Record  . . . . . : mssplus.mcafee.com
+
+
+    1.137.168.192.in-addr.arpa
+    ----------------------------------------
+    Record Name . . . . . : 1.137.168.192.in-addr.arpa.
+    Record Type . . . . . : 12
+    Time To Live  . . . . : 598580
+    Data Length . . . . . : 8
+    Section . . . . . . . : Answer
+    PTR Record  . . . . . : NONAME2.mshome.net
+
+
+    dns.google
+    ----------------------------------------
+    Record Name . . . . . : dns.google
+    Record Type . . . . . : 28
+    Time To Live  . . . . : 142
+    Data Length . . . . . : 16
+    Section . . . . . . . : Answer
+    AAAA Record . . . . . : 2001:4860:4860::8844
+
+
+    Record Name . . . . . : dns.google
+    Record Type . . . . . : 28
+    Time To Live  . . . . : 142
+    Data Length . . . . . : 16
+    Section . . . . . . . : Answer
+    AAAA Record . . . . . : 2001:4860:4860::8888
+
+
+    dns.google
+    ----------------------------------------
+    Record Name . . . . . : dns.google
+    Record Type . . . . . : 1
+    Time To Live  . . . . : 235
+    Data Length . . . . . : 4
+    Section . . . . . . . : Answer
+    A (Host) Record . . . : 8.8.4.4
+
+
+    Record Name . . . . . : dns.google
+    Record Type . . . . . : 1
+    Time To Live  . . . . : 235
+    Data Length . . . . . : 4
+    Section . . . . . . . : Answer
+    A (Host) Record . . . : 8.8.8.8
+
+
+    noname2.mshome.net
+    ----------------------------------------
+    No records of type AAAA
+
+
+    noname2.mshome.net
+    ----------------------------------------
+    Record Name . . . . . : NONAME2.mshome.net
+    Record Type . . . . . : 1
+    Time To Live  . . . . : 598580
+    Data Length . . . . . : 4
+    Section . . . . . . . : Answer
+    A (Host) Record . . . : 192.168.137.1
+
+
+    ocsp2.globalsign.com
+    ----------------------------------------
+    Record Name . . . . . : ocsp2.globalsign.com
+    Record Type . . . . . : 5
+    Time To Live  . . . . : 160
+    Data Length . . . . . : 8
+    Section . . . . . . . : Answer
+    CNAME Record  . . . . : global.prd.cdn.globalsign.com
+
+
+    Record Name . . . . . : global.prd.cdn.globalsign.com
+    Record Type . . . . . : 5
+    Time To Live  . . . . : 160
+    Data Length . . . . . : 8
+    Section . . . . . . . : Answer
+    CNAME Record  . . . . : cdn.globalsigncdn.com.cdn.cloudflare.net
+
+
+    Record Name . . . . . : cdn.globalsigncdn.com.cdn.cloudflare.net
+    Record Type . . . . . : 28
+    Time To Live  . . . . : 160
+    Data Length . . . . . : 16
+    Section . . . . . . . : Answer
+    AAAA Record . . . . . : 2606:4700::6812:14e2
+
+
+    Record Name . . . . . : cdn.globalsigncdn.com.cdn.cloudflare.net
+    Record Type . . . . . : 28
+    Time To Live  . . . . : 160
+    Data Length . . . . . : 16
+    Section . . . . . . . : Answer
+    AAAA Record . . . . . : 2606:4700::6812:15e2
+
+
+    ocsp2.globalsign.com
+    ----------------------------------------
+    Record Name . . . . . : ocsp2.globalsign.com
+    Record Type . . . . . : 5
+    Time To Live  . . . . : 133
+    Data Length . . . . . : 8
+    Section . . . . . . . : Answer
+    CNAME Record  . . . . : global.prd.cdn.globalsign.com
+
+
+    Record Name . . . . . : global.prd.cdn.globalsign.com
+    Record Type . . . . . : 5
+    Time To Live  . . . . : 133
+    Data Length . . . . . : 8
+    Section . . . . . . . : Answer
+    CNAME Record  . . . . : cdn.globalsigncdn.com.cdn.cloudflare.net
+
+
+    Record Name . . . . . : cdn.globalsigncdn.com.cdn.cloudflare.net
+    Record Type . . . . . : 1
+    Time To Live  . . . . : 133
+    Data Length . . . . . : 4
+    Section . . . . . . . : Answer
+    A (Host) Record . . . : 104.18.20.226
+
+
+    Record Name . . . . . : cdn.globalsigncdn.com.cdn.cloudflare.net
+    Record Type . . . . . : 1
+    Time To Live  . . . . : 133
+    Data Length . . . . . : 4
+    Section . . . . . . . : Answer
+    A (Host) Record . . . : 104.18.21.226
+
+
